@@ -10,14 +10,13 @@
                 <div class="panel-body">
                     <div>
                         <h3>Anmeldelser</h3>
-                        <p><a href="reviews/create">Skriv en ny anmeldelse</a></p>
-                        <p><a href="reviews/overview">Administrer dine anmeldelser</a>
+                        <p><a href="reviews/create">Ny anmeldelse</a></p>
+                        <p><a href="reviews/overview">Administrer egne anmeldelser</a>
                     </div>
                     <hr />
                     <div>
                         <h3>Annen administrasjon</h3>
                         <p><a href="apps">Administrer applikasjoner</a></p>
-                        <p><a href="#">Administrer brukere</a></p>
                     </div>
                 </div>
             </div>

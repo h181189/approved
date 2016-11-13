@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function isEditor() {
         return $this->editor;
     }
+
+    public function review() {
+        return $this->hasMany(Review);
+    }
 }

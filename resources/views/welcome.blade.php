@@ -86,7 +86,7 @@
 
                 <div class="links">
                     <a href="/reviews/">Anmeldelser</a>
-                    <a href="#">Om oss</a>
+                    <a href="http://www.home.hib.no/studenter/h181189/group/">Om oss</a>
                 </div>
             </div>
         </div>

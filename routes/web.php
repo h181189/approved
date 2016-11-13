@@ -21,4 +21,4 @@ Route::get('/home', function() {
 	return view('home');
 })->middleware('auth', 'editor');
 
-Route::resource('reviews/', 'ReviewController');
+Route::resource('reviews', 'ReviewController');
