@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Approved</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -59,6 +59,10 @@
                 text-transform: uppercase;
             }
 
+            .links > a:hover {
+                text-decoration: underline;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -68,26 +72,21 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                    @if (!Auth::check())
+                        <a href="{{ url('/login') }}">Logg inn</a>
+                        <a href="{{ url('/register') }}">Registrer</a>
                     @endif
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    {{ config('app.name', 'Approved') }}
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="/reviews/">Anmeldelser</a>
+                    <a href="#">Om oss</a>
                 </div>
             </div>
         </div>
