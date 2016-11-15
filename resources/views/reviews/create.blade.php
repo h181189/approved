@@ -4,6 +4,9 @@
 <div class="container-fluid">
 	<div class="col-md-6 col-md-offset-3">
 		<h1>Ny anmeldelse</h1>
+		<p>
+			<a href="/panel">Gå tilbake</a>
+		</p>
 		<hr />
 		<form action="/reviews" method="POST">
 			<div class="form-group">

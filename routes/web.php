@@ -18,3 +18,5 @@ Auth::routes();
 
 Route::get('/reviews/overview', 'ReviewController@overview');
 Route::resource('reviews', 'ReviewController');
+
+Route::resource('apps', 'AppController');
