@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use App\User;
+use App\Comment;
 use Auth;
 
 class ReviewController extends Controller
@@ -144,5 +145,19 @@ class ReviewController extends Controller
         $review->score->delete();
         $review->delete();
         return redirect('/reviews');
+    }
+
+    /**
+    * Stores a comment to the resource.
+    *
+    * @return /Illuminate/Http/Response
+    */
+    public function store_comment(Request $request) {
+        $comment = Comment::create([
+            'user_id' => Auth::user()->id,
+            'review_id' => $request->review,
+            'content' => $request->content]);
+        $comment->save();
+        return redirect('/reviews/' . $request->review);
     }
 }

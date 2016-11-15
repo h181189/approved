@@ -16,6 +16,7 @@ Route::get('/panel', 'HomeController@panel');
 
 Auth::routes();
 
+Route::post('/reviews/{id}/', 'ReviewController@store_comment');
 Route::get('/reviews/overview', 'ReviewController@overview');
 Route::resource('reviews', 'ReviewController');
 
