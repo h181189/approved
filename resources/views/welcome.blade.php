@@ -75,6 +75,15 @@
                     @if (!Auth::check())
                         <a href="{{ url('/login') }}">Logg inn</a>
                         <a href="{{ url('/register') }}">Registrer</a>
+                    @else
+                        <a href="{{ url('/logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            Logg ut
+                        </a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     @endif
                 </div>
             @endif
@@ -85,8 +94,11 @@
                 </div>
 
                 <div class="links">
-                    <a href="/reviews/">Anmeldelser</a>
-                    <a href="http://www.home.hib.no/studenter/h181189/group/">Om oss</a>
+                    @if (Auth::user() && Auth::user()->isEditor())
+                        <a href="{{ url('/panel') }}">Admin panel</a>
+                    @endif
+                    <a href="{{ url('/reviews') }}">Anmeldelser</a>
+                    <a href="http://home.hib.no/studenter/h181189/group/">Om oss</a>
                 </div>
             </div>
         </div>

@@ -3,13 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Review;
+use App\Review;
+use App\User;
+use Auth;
 
 class ReviewController extends Controller
 {
 
     public function __construct() {
         $this->middleware('editor', ['except' => ['index', 'show']]);
+    }
+    
+    /**
+    * An overview of the resource.
+    *
+    * @return  /Illuminate/Http/Response
+    */
+    public function overview()
+    {
+        $reviews = Auth::user()->review()->get();
+        return view('reviews.overview', compact('reviews'));
     }
 
     /**
@@ -81,34 +94,55 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Review $review)
     {
-        //
+        return view('reviews.edit', compact('review'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Review $review)
     {
-        //
+        $app = \App\App::where('name', $request->app)->first();
+        if ($app == null) {
+            $app = new \App\App;
+            $app->name = $request->app;
+            $app->developer = "";
+            $app->url = "";
+            $app->save();
+        }
+
+        $review->score->functionality = $request->functionality_rating;
+        $review->score->interface = $request->interface_rating;
+        $review->score->price = $request->price_rating;
+        $review->score->total = round(($request->functionality_rating + $request->interface_rating + $request->price_rating) / 30) * 10;
+        $review->score->save();
+
+        $review->app_id = $app->id;
+        $review->content = $request->content;
+        $review->save();
+
+        return redirect('reviews/' . $review->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
-        //
+        $review->score->delete();
+        $review->delete();
+        return redirect('/reviews');
     }
 }

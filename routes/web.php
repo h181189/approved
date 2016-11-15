@@ -11,14 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+Route::get('/panel', 'HomeController@panel');
 
 Auth::routes();
 
-Route::get('/home', function() {
-	return view('home');
-})->middleware('auth', 'editor');
-
+Route::get('/reviews/overview', 'ReviewController@overview');
 Route::resource('reviews', 'ReviewController');
