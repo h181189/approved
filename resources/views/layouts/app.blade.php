@@ -61,7 +61,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="/panel">Admin panel</a></li>
+                                    @if (Auth::user()->isEditor())
+                                        <li><a href="/panel">Admin panel</a></li>
+                                    @endif
                                     <li><a href="{{ url('/') }}">Hjem</a></li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
