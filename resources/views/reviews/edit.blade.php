@@ -47,7 +47,7 @@
 		</form>
 		<div class="form-group">
 			<form action="/reviews/{{ $review->id }}" method="POST">
-				<p class="text-warning">Dersom du sletter denne anmeldelsen er den like fortapt som fremtiden til Bendik!</p>
+				<p class="text-warning">Dersom du sletter denne er det ingen måte å få den tilbake.</p>
 				{{ method_field('DELETE') }}
 				{{ csrf_field() }}
 				<button class="btn btn-danger">Slett anmeldelse</button>
