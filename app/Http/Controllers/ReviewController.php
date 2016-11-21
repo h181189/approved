@@ -12,7 +12,7 @@ class ReviewController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('editor', ['except' => ['index', 'show']]);
+        $this->middleware('editor', ['except' => ['index', 'show', 'store_comment']]);
     }
     
     /**
